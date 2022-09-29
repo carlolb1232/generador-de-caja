@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ColorBox from './Components/ColorBox';
+import Form from './Components/Form';
 
 function App() {
+  const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
+
+  const getColors = (color)=>{
+    setColors([color, ...colors])
+  }
+  
+  const getSizes = (size)=>{
+    setSizes([size, ...sizes])
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form onColor={ getColors } onSize={getSizes}/>
+      <ColorBox background={colors} widthHeigth={sizes}/>
     </div>
   );
 }
